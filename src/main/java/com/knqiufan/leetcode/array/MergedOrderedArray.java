@@ -1,4 +1,4 @@
-package com.knqiufan.leetcode;
+package com.knqiufan.leetcode.array;
 
 import java.util.Arrays;
 
