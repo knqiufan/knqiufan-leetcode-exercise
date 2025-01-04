@@ -9,7 +9,7 @@ package com.knqiufan.leetcode.array;
  *
  * @author knqiufan
  * @version 1.0.0
- * @date 2024/3/27 0:41
+ * @date 2025/1/4 0:41
  */
 public class MaxProfit {
   public static void main(String[] args) {
