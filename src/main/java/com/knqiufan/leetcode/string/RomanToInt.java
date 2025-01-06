@@ -23,7 +23,35 @@ public class RomanToInt {
 
   public static void main(String[] args) {
     String s = "IX";
-    System.out.println(romanToInt(s));
+    System.out.println(romanToInt2(s));
+  }
+  static Map<String, Integer> rule = new HashMap<>() {{
+    put("I", 1);
+    put("V", 5);
+    put("X", 10);
+    put("L", 50);
+    put("C", 100);
+    put("D", 500);
+    put("M", 1000);
+  }};
+  /**
+   * 当前位置的元素比下个位置的元素小，就减去当前值，否则加上当前值
+   * 击败 27.64%
+   *
+   * @param s 罗马数字
+   * @return 整数
+   */
+  private static int romanToInt2(String s) {
+    int sum = 0;
+    for (int i = 0; i < s.length(); i++) {
+      int value = rule.get(String.valueOf(s.charAt(i)));
+      if (i < s.length() - 1 && value < rule.get(String.valueOf(s.charAt(i + 1)))) {
+        sum -= value;
+      } else {
+        sum += value;
+      }
+    }
+    return sum;
   }
 
   /**
@@ -33,15 +61,6 @@ public class RomanToInt {
    * @return 整数
    */
   private static int romanToInt(String s) {
-    Map<String, Integer> rule = new HashMap<>() {{
-      put("I", 1);
-      put("V", 5);
-      put("X", 10);
-      put("L", 50);
-      put("C", 100);
-      put("D", 500);
-      put("M", 1000);
-    }};
     Map<String, Integer> spatialRule = new HashMap<>() {{
       put("IV", 4);
       put("IX", 9);
