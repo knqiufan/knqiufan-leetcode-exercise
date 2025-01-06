@@ -25,15 +25,21 @@ public class RomanToInt {
     String s = "IX";
     System.out.println(romanToInt2(s));
   }
-  static Map<String, Integer> rule = new HashMap<>() {{
-    put("I", 1);
-    put("V", 5);
-    put("X", 10);
-    put("L", 50);
-    put("C", 100);
-    put("D", 500);
-    put("M", 1000);
+
+  /**
+   * 将 Map<String, Integer> 类型换成 Map<Character, Integer> 类型
+   * 效率提高很多，省去了 String 和 Char 的转换时间
+   */
+  static Map<Character, Integer> rule = new HashMap<>() {{
+    put('I', 1);
+    put('V', 5);
+    put('X', 10);
+    put('L', 50);
+    put('C', 100);
+    put('D', 500);
+    put('M', 1000);
   }};
+
   /**
    * 当前位置的元素比下个位置的元素小，就减去当前值，否则加上当前值
    * 击败 27.64%
@@ -44,8 +50,8 @@ public class RomanToInt {
   private static int romanToInt2(String s) {
     int sum = 0;
     for (int i = 0; i < s.length(); i++) {
-      int value = rule.get(String.valueOf(s.charAt(i)));
-      if (i < s.length() - 1 && value < rule.get(String.valueOf(s.charAt(i + 1)))) {
+      int value = rule.get(s.charAt(i));
+      if (i < s.length() - 1 && value < rule.get(s.charAt(i + 1))) {
         sum -= value;
       } else {
         sum += value;
@@ -78,7 +84,7 @@ public class RomanToInt {
       }
     }
     for (int i = 0; i < s.length(); i++) {
-      sum += rule.get(String.valueOf(s.charAt(i)));
+      sum += rule.get(s.charAt(i));
     }
     return sum;
   }
