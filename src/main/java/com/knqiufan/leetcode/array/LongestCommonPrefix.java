@@ -1,5 +1,7 @@
 package com.knqiufan.leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * 14. 最长公共前缀
  * 编写一个函数来查找字符串数组中的最长公共前缀。
