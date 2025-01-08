@@ -12,4 +12,19 @@ package com.knqiufan.leetcode.string;
  * @date 2025/1/8 22:47
  */
 public class LengthOfLastWord {
+  public static void main(String[] args) {
+    String str = "hello world dfwg sdw  a ";
+    System.out.println(lengthOfLastWord(str));
+  }
+
+  /**
+   * 1 ms 击败 36.23%
+   *
+   * @param str 字符串
+   * @return 最后一个单词长度
+   */
+  private static int lengthOfLastWord(String str) {
+    String[] strArray = str.trim().split(" ");
+    return strArray[strArray.length - 1].length();
+  }
 }
