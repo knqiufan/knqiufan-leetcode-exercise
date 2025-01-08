@@ -10,4 +10,20 @@ package com.knqiufan.leetcode.string;
  * @date 2025/1/8 23:18
  */
 public class StrStr {
+  public static void main(String[] args) {
+    String hystack = "sadbutsad";
+    String needle = "butse";
+    System.out.println(strStr(hystack, needle));
+  }
+
+  /**
+   * 0 ms 击败 100.00%
+   *
+   * @param haystack haystack
+   * @param needle   needle
+   * @return
+   */
+  private static int strStr(String haystack, String needle) {
+    return haystack.indexOf(needle);
+  }
 }
