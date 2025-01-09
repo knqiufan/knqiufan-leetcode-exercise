@@ -1,5 +1,7 @@
 package com.knqiufan.leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * 274. H 指数
  * 给你一个整数数组 citations ，其中 citations[i] 表示研究者的第 i 篇论文被引用的次数。计算并返回该研究者的 h 指数。
@@ -11,4 +13,19 @@ package com.knqiufan.leetcode.array;
  * @date 2025/1/9 23:30
  */
 public class HIndex {
+  public static void main(String[] args) {
+    int[] citations = new int[]{3, 0, 6, 1, 5};
+    System.out.println(hIndex(citations));
+  }
+
+  private static int hIndex(int[] citations) {
+    Arrays.sort(citations);
+    int h = 0;
+    int i = citations.length - 1;
+    while (i >= 0 && citations[i] > h) {
+      h++;
+      i--;
+    }
+    return h;
+  }
 }
