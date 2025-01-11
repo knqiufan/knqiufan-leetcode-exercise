@@ -22,49 +22,73 @@ public class CanCompleteCircuit {
   }
 
   public static int canCompleteCircuit(int[] gas, int[] cost) {
-    int begin = -1;
-    // 计算 gas 和 cost 的 sum
-    int sumGas = sum(gas);
-    int sumCost = sum(cost);
-    if (sumCost > sumGas) {
-      return -1;
-    }
-    // 递归
-    return b(gas, cost, begin, 0);
-  }
+    int totalGas = 0; // 总油量
+    int totalCost = 0; // 总消耗
+    int currentGas = 0; // 当前油量
+    int start = 0; // 起始加油站索引
 
-  private static int b(int[] gas, int[] cost, int begin, int i) {
-    if (i == gas.length) {
-      return begin;
-    }
-    int next;
-    int sheng = 0;
-    sheng += gas[i];
-    next = a(sheng, cost);
-    if (next == -1) {
-      b(gas, cost, begin, i + 1);
-    } else if (begin == -1) {
-      begin = next;
-    } else {
-      b(gas, cost, begin, next);
-    }
-    return begin;
-  }
+    for (int i = 0; i < gas.length; i++) {
+      totalGas += gas[i];
+      totalCost += cost[i];
+      currentGas += gas[i] - cost[i];
 
-  private static int a(int sheng, int[] cost) {
-    for (int i = 0; i < cost.length; i++) {
-      if (sheng >= cost[i]) {
-        return i;
+      // 如果当前油量小于 0，则更新起始点
+      if (currentGas < 0) {
+        start = i + 1;
+        currentGas = 0;
       }
     }
-    return -1;
+
+    // 如果总油量小于总消耗，则返回 -1
+    if (totalGas < totalCost) {
+      return -1;
+    }
+
+    return start;
+    // int begin = -1;
+    // // 计算 gas 和 cost 的 sum
+    // int sumGas = sum(gas);
+    // int sumCost = sum(cost);
+    // if (sumCost > sumGas) {
+    //   return -1;
+    // }
+    // // 递归
+    // return b(gas, cost, begin, 0);
   }
 
-  private static int sum(int[] arr) {
-    int sum = 0;
-    for (int i : arr) {
-      sum += i;
-    }
-    return sum;
-  }
+  // 问题想复杂了，废弃
+  // private static int b(int[] gas, int[] cost, int begin, int i) {
+  //   if (i == gas.length) {
+  //     return begin;
+  //   }
+  //   int next;
+  //   int sheng = 0;
+  //   sheng += gas[i];
+  //   next = a(sheng, cost);
+  //   if (next == -1) {
+  //     b(gas, cost, begin, i + 1);
+  //   } else if (begin == -1) {
+  //     begin = next;
+  //   } else {
+  //     b(gas, cost, begin, next);
+  //   }
+  //   return begin;
+  // }
+  //
+  // private static int a(int sheng, int[] cost) {
+  //   for (int i = 0; i < cost.length; i++) {
+  //     if (sheng >= cost[i]) {
+  //       return i;
+  //     }
+  //   }
+  //   return -1;
+  // }
+  //
+  // private static int sum(int[] arr) {
+  //   int sum = 0;
+  //   for (int i : arr) {
+  //     sum += i;
+  //   }
+  //   return sum;
+  // }
 }
